@@ -21,34 +21,34 @@ public class EmployeeServiceController {
         return employeeService.allEmployee();
     }
 
-//    @GetMapping(path = "add")
-//    public Employee addEmployee(@RequestParam ("fullName") String fullName,
-//                                @RequestParam("department") Integer department,
-//                                @RequestParam("salary") Double salary) {
-//        return employeeService.addEmployee(fullName, department, salary);
-//    }
-//
-//    @GetMapping(path = "dell")
-//    public Employee dellEmployee(@RequestParam ("fullName") String fullName,
-//                                 @RequestParam("department") Integer department,
-//                                 @RequestParam("salary") Double salary) {
-//        return employeeService.delEmployee(fullName, department, salary);
-//    }
-//
-//    @GetMapping(path = "info")
-//    public Employee infoEmployee(@RequestParam ("fullName") String fullName,
-//                                 @RequestParam("department") Integer department,
-//                                 @RequestParam("salary") Double salary) {
-//        return employeeService.infoEmployee(fullName, department, salary);
-//    }
+    @GetMapping(path = "add")
+    public Employee addEmployee(@RequestParam ("fullName") String fullName,
+                                @RequestParam("department") Integer department,
+                                @RequestParam("salary") Double salary) {
+        return employeeService.addEmployee(fullName, department, salary);
+    }
+
+    @GetMapping(path = "dell")
+    public Employee dellEmployee(@RequestParam ("fullName") String fullName,
+                                 @RequestParam("department") Integer department,
+                                 @RequestParam("salary") Double salary) {
+        return employeeService.delEmployee(fullName, department, salary);
+    }
+
+    @GetMapping(path = "info")
+    public Employee infoEmployee(@RequestParam ("fullName") String fullName,
+                                 @RequestParam("department") Integer department,
+                                 @RequestParam("salary") Double salary) {
+        return employeeService.infoEmployee(fullName, department, salary);
+    }
 
     @GetMapping(path = "max-salary")
-    public Employee getMaxSalaryDepart(@RequestParam("department") Integer department) {
-        return employeeService.getMaxSalaryDepart(department);
+    public Employee getMaxSalaryDep(@RequestParam("department") Integer department) {
+        return employeeService.getMaxSalaryDep(department);
     }
     @GetMapping(path = "min-salary")
-    public Employee getMinSalaryDepart(@RequestParam("department") Integer department) {
-        return employeeService.getMaxSalaryDepart(department);
+    public Employee getMinSalaryDep(@RequestParam("department") Integer department) {
+        return employeeService.getMinSalaryDep(department);
     }
 
     @GetMapping(path = "all")
