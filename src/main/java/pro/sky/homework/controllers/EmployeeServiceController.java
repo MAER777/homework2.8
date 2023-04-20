@@ -1,20 +1,22 @@
-package pro.sky.homework.dz28;
+package pro.sky.homework.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import pro.sky.homework.person.Employee;
+import pro.sky.homework.service.EmployeeService;
+import pro.sky.homework.service.EmployeeServiceImpl;
 
 @RestController
 @RequestMapping("/employee")
 public class EmployeeServiceController {
     private final EmployeeService employeeService;
 
-    public EmployeeServiceController(EmployeeService employeeService) {
+    public EmployeeServiceController(EmployeeServiceImpl employeeService) {
         this.employeeService = employeeService;
     }
+
 
     @GetMapping
     public String allEmployee() {
@@ -42,21 +44,5 @@ public class EmployeeServiceController {
         return employeeService.infoEmployee(fullName, department, salary);
     }
 
-    @GetMapping(path = "max-salary")
-    public Employee getMaxSalaryDep(@RequestParam("department") Integer department) {
-        return employeeService.getMaxSalaryDep(department);
-    }
-    @GetMapping(path = "min-salary")
-    public Employee getMinSalaryDep(@RequestParam("department") Integer department) {
-        return employeeService.getMinSalaryDep(department);
-    }
-
-    @GetMapping(path = "all")
-    public List<Employee> getEmployeeDepart(@RequestParam(value = "department", required = false) Integer department) {
-        if (department == null) {
-            return employeeService.showAll();
-        }
-        return employeeService.showDepart(department);
-    }
 
 }

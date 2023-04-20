@@ -1,11 +1,12 @@
-package pro.sky.homework.dz28;
+package pro.sky.homework.service;
+import pro.sky.homework.exception.EmployeeAlreadyAddedException;
+import pro.sky.homework.exception.EmployeeNotFoundException;
+import pro.sky.homework.exception.EmployeeStorageIsFullException;
+import pro.sky.homework.person.Employee;
 
 import java.util.List;
 
-public interface EmployeeServiceInt {
-    //
-    //
-    //    @Override
+public interface EmployeeService {
     String allEmployee();
 
     Employee addEmployee(String fullNameEmployee, int department, double salary) throws EmployeeAlreadyAddedException, EmployeeStorageIsFullException;
@@ -14,11 +15,5 @@ public interface EmployeeServiceInt {
 
     Employee infoEmployee(String fullNameEmployee, int department, double salary) throws EmployeeNotFoundException;
 
-    Employee getMaxSalaryDep(int dep);
-
-    Employee getMinSalaryDep(int dep);
-
-    List<Employee> showAll();
-
-    List<Employee> showDepart(int department);
+    List<Employee> getEmployees();
 }
