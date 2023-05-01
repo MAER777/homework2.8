@@ -1,4 +1,4 @@
-package pro.sky.homework.dz28;
+package pro.sky.homework.person;
 
 import java.util.Objects;
 
