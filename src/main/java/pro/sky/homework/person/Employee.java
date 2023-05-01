@@ -3,25 +3,35 @@ package pro.sky.homework.person;
 import java.util.Objects;
 
 public class Employee {
-    private String fullNameEmployee;
+    private String name;
 
+    private String surName;
     private int department;
 
     private double salary;
 
-    public Employee(String fullNameEmployee, int department, double salary) {
-        this.fullNameEmployee = fullNameEmployee;
+    public Employee(String name, String surName, int department, double salary) {
+        this.name = name;
+        this.surName = surName;
         this.department = department;
         this.salary = salary;
     }
 
-    public String getFullNameEmployee() {
-        return fullNameEmployee;
+    public String getName() {
+        return name;
     }
 
-    public void setFullNameEmployee(String fullNameEmployee) {
-        this.fullNameEmployee = fullNameEmployee;
+    public void setName(String name) {
+        this.name = name;
     }
+
+    public String getSurName() {
+        return surName;
+    }
+    public void setSurName(String surName) {
+        this.surName = surName;
+    }
+
     public int getDepartment() {
         return department;
     }
@@ -38,10 +48,12 @@ public class Employee {
         this.salary = salary;
     }
 
+
     @Override
     public String toString() {
         return "Employee{" +
-                "fullNameEmployee='" + fullNameEmployee + '\'' +
+                "name='" + name + '\'' +
+                ", surName='" + surName + '\'' +
                 ", department=" + department +
                 ", salary=" + salary +
                 '}';
@@ -52,11 +64,11 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return department == employee.department && Double.compare(employee.salary, salary) == 0 && Objects.equals(fullNameEmployee, employee.fullNameEmployee);
+        return department == employee.department && Double.compare(employee.salary, salary) == 0 && Objects.equals(name, employee.name) && Objects.equals(surName, employee.surName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fullNameEmployee, department, salary);
+        return Objects.hash(name, surName, department, salary);
     }
 }

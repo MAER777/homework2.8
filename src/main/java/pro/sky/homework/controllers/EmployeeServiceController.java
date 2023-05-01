@@ -24,24 +24,27 @@ public class EmployeeServiceController {
     }
 
     @GetMapping(path = "add")
-    public Employee addEmployee(@RequestParam ("fullName") String fullName,
+    public Employee addEmployee(@RequestParam ("name") String name,
+                                @RequestParam ("surName") String surName,
                                 @RequestParam("department") Integer department,
                                 @RequestParam("salary") Double salary) {
-        return employeeService.addEmployee(fullName, department, salary);
+        return employeeService.addEmployee(name, surName, department, salary);
     }
 
     @GetMapping(path = "dell")
-    public Employee dellEmployee(@RequestParam ("fullName") String fullName,
+    public Employee dellEmployee(@RequestParam ("name") String name,
+                                 @RequestParam ("surName") String surName,
                                  @RequestParam("department") Integer department,
                                  @RequestParam("salary") Double salary) {
-        return employeeService.delEmployee(fullName, department, salary);
+        return employeeService.delEmployee(name, surName, department, salary);
     }
 
     @GetMapping(path = "info")
-    public Employee infoEmployee(@RequestParam ("fullName") String fullName,
+    public Employee infoEmployee(@RequestParam ("name") String name,
+                                 @RequestParam ("surName") String surName,
                                  @RequestParam("department") Integer department,
                                  @RequestParam("salary") Double salary) {
-        return employeeService.infoEmployee(fullName, department, salary);
+        return employeeService.infoEmployee(name, surName, department, salary);
     }
 
 

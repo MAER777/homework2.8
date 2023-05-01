@@ -13,7 +13,13 @@ import java.util.List;
 
 public class EmployeeServiceImpl implements EmployeeService{
     private static final int Standart = 20;
+    private final ValidatorService validatorService;
     List<Employee> employees = new ArrayList<>(List.of());
+
+    public EmployeeServiceImpl(ValidatorService validatorService) {
+        this.validatorService = validatorService;
+    }
+
     @Override
     public List<Employee> getEmployees() {
         return Collections.unmodifiableList(employees);
@@ -25,8 +31,15 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Employee addEmployee(String fullNameEmployee, int department, double salary) throws EmployeeAlreadyAddedException, EmployeeStorageIsFullException {
-        Employee employee = new Employee(fullNameEmployee, department, salary);
+    public Employee addEmployee(String name,
+                                String surName,
+                                int department,
+                                double salary) throws EmployeeAlreadyAddedException, EmployeeStorageIsFullException {
+        Employee employee = new Employee(
+                validatorService.validateName(name),
+                validatorService.validateSurName(surName),
+                department,
+                salary);
         if (employees.size() >= Standart) {
             throw new EmployeeStorageIsFullException();
         }
@@ -38,8 +51,15 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Employee delEmployee(String fullNameEmployee, int department, double salary) throws EmployeeNotFoundException {
-        int index = employees.indexOf(new Employee(fullNameEmployee,department,salary));
+    public Employee delEmployee(String name,
+                                String surName,
+                                int department,
+                                double salary) throws EmployeeNotFoundException {
+        int index = employees.indexOf(new Employee(
+                name,
+                surName ,
+                department,
+                salary));
         if (index == -1) {
             throw new EmployeeNotFoundException();
         }
@@ -47,8 +67,15 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Employee infoEmployee(String fullNameEmployee, int department, double salary) throws EmployeeNotFoundException {
-        int index = employees.indexOf(new Employee(fullNameEmployee, department, salary));
+    public Employee infoEmployee(String name,
+                                 String surName,
+                                 int department,
+                                 double salary) throws EmployeeNotFoundException {
+        int index = employees.indexOf(new Employee(
+                name,
+                surName,
+                department,
+                salary));
         if (index == -1) {
             throw new EmployeeNotFoundException();
         }
