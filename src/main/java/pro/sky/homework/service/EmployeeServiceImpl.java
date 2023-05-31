@@ -7,7 +7,6 @@ import pro.sky.homework.exception.EmployeeStorageIsFullException;
 import pro.sky.homework.person.Employee;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 @Service
 
@@ -22,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public List<Employee> getEmployees() {
-        return Collections.unmodifiableList(employees);
+        return new ArrayList<>(employees);
     }
 
     @Override
@@ -55,15 +54,21 @@ public class EmployeeServiceImpl implements EmployeeService{
                                 String surName,
                                 int department,
                                 double salary) throws EmployeeNotFoundException {
-        int index = employees.indexOf(new Employee(
-                name,
-                surName ,
-                department,
-                salary));
-        if (index == -1) {
-            throw new EmployeeNotFoundException();
-        }
-        return employees.remove(index);
+        Employee employee = employees.stream()
+                .filter(employee1 -> employee1.getName().equals(name) && employee1.getSurName().equals(surName))
+                .findFirst()
+                .orElseThrow(EmployeeNotFoundException::new);
+        employees.remove(employee);
+        return employee;
+//        int index = employees.indexOf(new Employee(
+//                name,
+//                surName ,
+//                department,
+//                salary));
+//        if (index == -1) {
+//            throw new EmployeeNotFoundException();
+//        }
+//        return employees.remove(index);
     }
 
     @Override
