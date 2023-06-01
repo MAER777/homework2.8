@@ -9,11 +9,11 @@ import java.util.List;
 public interface EmployeeService {
     String allEmployee();
 
-    Employee addEmployee(String fullNameEmployee, int department, double salary) throws EmployeeAlreadyAddedException, EmployeeStorageIsFullException;
+    Employee addEmployee(String name, String surName, int department, double salary) throws EmployeeAlreadyAddedException, EmployeeStorageIsFullException;
 
-    Employee delEmployee(String fullNameEmployee, int department, double salary) throws EmployeeNotFoundException;
+    Employee delEmployee(String name, String surName, int department, double salary) throws EmployeeNotFoundException;
 
-    Employee infoEmployee(String fullNameEmployee, int department, double salary) throws EmployeeNotFoundException;
+    Employee infoEmployee(String name, String surName, int department, double salary) throws EmployeeNotFoundException;
 
     List<Employee> getEmployees();
 }
